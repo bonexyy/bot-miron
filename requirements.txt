@@ -1,10 +1,11 @@
 aiogram==3.7.0
 aiohttp==3.9.5
+aiosqlite==0.20.0
 beautifulsoup4==4.12.3
+loguru
+openai
+httpx
+requests
 python-dotenv==1.0.1
 Pillow==10.3.0
 rapidfuzz==3.9.3
-aiosqlite==0.20.0
-loguru
-openai
-yandex-cloud-ml-sdk

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # --- Сервис Telegram-бота ---
+  bot:
+    build: .
+    container_name: riddle_bot
+    restart: always  # Автоматически перезапускать при падении и старте сервера
+    env_file:
+      - .env
+    volumes:
+      # Пробрасываем папки с данными и логами, чтобы они не терялись при пересборке
+      - ./data:/app/data
+      - ./logs:/app/logs
+    command: python main.py
+
+  # --- Сервис Генератора (запускается вручную) ---
+  generator:
+    build: .
+    container_name: riddle_generator
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    # Мы не ставим restart: always, чтобы он не тратил токены впустую
+    command: python generate_tastks.py
